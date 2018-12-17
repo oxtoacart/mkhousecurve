@@ -9,3 +9,6 @@ For example:
 ```bash
 mkhousecurve -in vemonkplus.txt -out vemonkplus_housecurve.txt -comment "House curve based on VE Monk Plus"
 ```
+
+The frequency response can be exported to text from the menu File -> Export -> Export Measurement as Text.
+This program assumes that the frequency response is tab delimited.
