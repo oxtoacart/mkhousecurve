@@ -21,6 +21,7 @@ var (
 	out     = flag.String("out", "housecurve.txt", "name of output file")
 	refDB   = flag.Float64("refdb", 84, "reference level in dB")
 	comment = flag.String("comment", "", "comment to include at top of house curve")
+	delim   = flag.String("delim", "\t", "delimiter to use for input file, defaults to tab")
 )
 
 func main() {
@@ -46,7 +47,8 @@ func main() {
 	defer outFile.Close()
 
 	csvIn := csv.NewReader(inFile)
-	csvIn.Comma = '\t'
+	delimString := *delim
+	csvIn.Comma = rune(delimString[0])
 	csvIn.FieldsPerRecord = 3
 	csvOut := csv.NewWriter(outFile)
 	csvOut.Comma = '\t'
