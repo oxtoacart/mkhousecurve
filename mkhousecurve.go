@@ -17,11 +17,12 @@ var (
 )
 
 var (
-	in      = flag.String("in", "", "name of input file")
-	out     = flag.String("out", "housecurve.txt", "name of output file")
-	refDB   = flag.Float64("refdb", 84, "reference level in dB")
-	comment = flag.String("comment", "", "comment to include at top of house curve")
-	delim   = flag.String("delim", "\t", "delimiter to use for input file, defaults to tab")
+	in              = flag.String("in", "", "name of input file")
+	out             = flag.String("out", "housecurve.txt", "name of output file")
+	refDB           = flag.Float64("refdb", 84, "reference level in dB")
+	comment         = flag.String("comment", "", "comment to include at top of house curve")
+	delim           = flag.String("delim", "\t", "delimiter to use for input file, defaults to tab")
+	fieldsPerRecord = flag.Int("fieldsperrecord", 3, "number of fields to expect per record")
 )
 
 func main() {
@@ -49,7 +50,7 @@ func main() {
 	csvIn := csv.NewReader(inFile)
 	delimString := *delim
 	csvIn.Comma = rune(delimString[0])
-	csvIn.FieldsPerRecord = 3
+	csvIn.FieldsPerRecord = *fieldsPerRecord
 	csvOut := csv.NewWriter(outFile)
 	csvOut.Comma = '\t'
 
